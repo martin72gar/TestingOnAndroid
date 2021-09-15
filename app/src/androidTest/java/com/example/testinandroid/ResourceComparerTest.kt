@@ -3,15 +3,20 @@ package com.example.testinandroid
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import com.google.common.truth.Truth.assertThat
+import org.junit.Before
 import org.junit.Test
 
 class ResourceComparerTest {
 
     private lateinit var resourceComparer: ResourceComparer
 
+    @Before
+    fun setUp() {
+        resourceComparer = ResourceComparer()
+    }
+
     @Test
     fun `stringResourceSameAsGivenString_returnTrue`() {
-        resourceComparer = ResourceComparer()
         val context = ApplicationProvider.getApplicationContext<Context>()
         val result = resourceComparer.isEqual(context, R.string.app_name, "Test in Android")
         assertThat(result).isTrue()
@@ -19,7 +24,6 @@ class ResourceComparerTest {
 
     @Test
     fun `stringResourceDiffAsGivenString_returnFalse`() {
-        resourceComparer = ResourceComparer()
         val context = ApplicationProvider.getApplicationContext<Context>()
         val result = resourceComparer.isEqual(context, R.string.app_name, "Testing Android")
         assertThat(result).isFalse()

@@ -47,4 +47,10 @@ class HomeworkTest {
         val result = Homework.checkBraces("(a * b))")
         assertThat(result).isFalse()
     }
+
+    @Test
+    fun `if ')' in front of '(' returns false`() {
+        val result = Homework.checkBraces(")(a * b))")
+        assertThat(result).isFalse()
+    }
 }

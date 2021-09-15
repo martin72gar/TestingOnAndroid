@@ -7,10 +7,11 @@ import org.junit.Test
 
 class ResourceComparerTest {
 
-    private val resourceComparer = ResourceComparer()
+    private lateinit var resourceComparer: ResourceComparer
 
     @Test
     fun `stringResourceSameAsGivenString_returnTrue`() {
+        resourceComparer = ResourceComparer()
         val context = ApplicationProvider.getApplicationContext<Context>()
         val result = resourceComparer.isEqual(context, R.string.app_name, "Test in Android")
         assertThat(result).isTrue()
@@ -18,6 +19,7 @@ class ResourceComparerTest {
 
     @Test
     fun `stringResourceDiffAsGivenString_returnFalse`() {
+        resourceComparer = ResourceComparer()
         val context = ApplicationProvider.getApplicationContext<Context>()
         val result = resourceComparer.isEqual(context, R.string.app_name, "Testing Android")
         assertThat(result).isFalse()
